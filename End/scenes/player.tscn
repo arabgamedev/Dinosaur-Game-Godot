@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://sprites/idle.png" type="Texture" id=1]
+[ext_resource path="res://sprites/crouch2.png" type="Texture" id=2]
+[ext_resource path="res://sprites/crouch1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/run1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/run2.png" type="Texture" id=5]
+[ext_resource path="res://sprites/death.png" type="Texture" id=6]
+[ext_resource path="res://scenes/player.gd" type="Script" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "crouch",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 5.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7, 12 )
+
+[node name="player" type="KinematicBody2D"]
+script = ExtResource( 7 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 6, -22 )
+frames = SubResource( 1 )
+animation = "jump"
+playing = true
+
+[node name="top_Collision" type="CollisionShape2D" parent="."]
+position = Vector2( 10, -37 )
+shape = SubResource( 2 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( -3, -12 )
+shape = SubResource( 3 )
